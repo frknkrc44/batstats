@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2020-2021 Furkan Karcıoğlu <https://github.com/frknkrc44>
+
+This file is part of BatStats project,
+and licensed under GNU Affero General Public License v3.
+See the GNU Affero General Public License for more details.
+
+All rights reserved. See COPYING, AUTHORS.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.internal">
+
+</manifest>

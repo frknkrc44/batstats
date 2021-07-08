@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2020-2021 Furkan Karcıoğlu <https://github.com/frknkrc44>
+
+This file is part of BatStats project,
+and licensed under GNU Affero General Public License v3.
+See the GNU Affero General Public License for more details.
+
+All rights reserved. See COPYING, AUTHORS.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.fk.batstats">
+
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
+
+    <application
+        android:allowBackup="true"
+        android:label="BatStats"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Material">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

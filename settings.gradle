@@ -1,0 +1,3 @@
+rootProject.name = "BatStats"
+include ':app'
+include ':internal'
