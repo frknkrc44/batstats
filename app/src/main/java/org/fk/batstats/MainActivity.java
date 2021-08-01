@@ -118,11 +118,11 @@ public class MainActivity extends Activity {
                     mStartClockTime.setAccessible(true);
                     return (long) mStartClockTime.get(stats);
                 }
-
-                return System.currentTimeMillis();
             } catch (Throwable x){
-                throw new RuntimeException(x);
+                // ignored
             }
+
+            return System.currentTimeMillis();
         }
     }
 

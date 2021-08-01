@@ -73,6 +73,10 @@ public class BatteryStatsListAdapter extends BaseAdapter {
     }
 
     private String getFormattedTime(long ms){
+        if (ms < 1) {
+            return "N/A";
+        }
+
         StringBuilder text = new StringBuilder();
         text.append(ms / HOUR).append("h ");
         ms %= HOUR;
