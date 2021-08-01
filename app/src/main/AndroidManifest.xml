@@ -12,16 +12,16 @@ All rights reserved. See COPYING, AUTHORS.
     package="org.fk.batstats">
 
     <uses-permission android:name="android.permission.BATTERY_STATS" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:label="BatStats"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

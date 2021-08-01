@@ -30,6 +30,7 @@ cat << EOF > $PERM_DIR/privapp-permissions-batstats.xml
 <permissions>
     <privapp-permissions package="org.fk.batstats">
         <permission name="android.permission.BATTERY_STATS" />
+        <permission name="android.permission.INTERACT_ACROSS_USERS_FULL" />
     </privapp-permissions>
 </permissions>
 EOF
@@ -37,4 +38,5 @@ EOF
 pushd $BUILD_DIR
 rm -f ../BatStats.zip
 zip -r ../BatStats.zip *
-popd $BUILD_DIR
+popd
+rm -rf $BUILD_DIR

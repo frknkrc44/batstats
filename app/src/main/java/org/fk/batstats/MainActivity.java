@@ -10,9 +10,11 @@
 package org.fk.batstats;
 
 import android.app.Activity;
+import android.os.BatteryStats;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.UserHandle;
 import android.os.UserManager;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
@@ -22,12 +24,14 @@ import com.android.internal.os.BatterySipper;
 import com.android.internal.os.BatterySipper.DrainType;
 import com.android.internal.os.BatteryStatsHelper;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity {
     private BatteryStatsHelper mBatteryStats;
     private ListAdapter mListAdapter;
+    private List<UserHandle> userCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,18 +64,70 @@ public class MainActivity extends Activity {
 
     private void refreshStats() {
         mBatteryStats.clearStats();
-        UserManager userManager = (UserManager) getSystemService(USER_SERVICE);
-        mBatteryStats.refreshStats(0, userManager.getUserProfiles());
+        if(userCache == null) {
+            UserManager userManager = (UserManager) getSystemService(USER_SERVICE);
+            userCache = userManager.getUserProfiles();
+        }
+        mBatteryStats.refreshStats(0, userCache);
     }
 
     private long calculateScreenUsageTime() {
-        BatterySipper sipper = findBatterySipperByType(mBatteryStats.getUsageList(), DrainType.SCREEN);
+        BatterySipper sipper = null;
+        try {
+            sipper = findBatterySipperByType(mBatteryStats.getUsageList(), DrainType.SCREEN);
+        } catch (Throwable t) {
+            try {
+                Object[] objs = BatterySipper.DrainType.class.getEnumConstants();
+                if (objs == null) throw new RuntimeException("objs is null");
+
+                Object screenEnum = null;
+                for(Object o : objs) {
+                    if(o.toString().contains("SCREEN")) {
+                        screenEnum = o;
+                        break;
+                    }
+                }
+
+                if (screenEnum != null)
+                    sipper = findBatterySipperByType(mBatteryStats.getUsageList(), screenEnum);
+            } catch (Throwable x) {
+                // ignore
+            }
+        }
         if (sipper != null) return sipper.usageTimeMs;
         return -1;
     }
 
+    private long getStartClockTime() {
+        BatteryStats stats = mBatteryStats.getStats();
+
+        try {
+            return stats.getStartClockTime();
+        } catch (Throwable t) {
+            try {
+                Field[] fields = stats.getClass().getDeclaredFields();
+                Field mStartClockTime = null;
+                for(Field field : fields) {
+                    if (field.toString().contains("mStartClockTime")) {
+                        mStartClockTime = field;
+                        break;
+                    }
+                }
+
+                if (mStartClockTime != null) {
+                    mStartClockTime.setAccessible(true);
+                    return (long) mStartClockTime.get(stats);
+                }
+
+                return System.currentTimeMillis();
+            } catch (Throwable x){
+                throw new RuntimeException(x);
+            }
+        }
+    }
+
     private long calculateLastFullChargeTime() {
-        return System.currentTimeMillis() - mBatteryStats.getStats().getStartClockTime();
+        return System.currentTimeMillis() - getStartClockTime();
     }
 
     private List<SipperHolder> getMainUsageList() {
@@ -81,7 +137,7 @@ public class MainActivity extends Activity {
         return sipperList;
     }
 
-    private BatterySipper findBatterySipperByType(List<BatterySipper> usageList, DrainType type) {
+    private BatterySipper findBatterySipperByType(List<BatterySipper> usageList, Object type) {
         for(int i = 0;i < usageList.size();i++) {
             BatterySipper sipper = usageList.get(i);
             if(sipper.drainType == type) {
