@@ -22,15 +22,17 @@ import java.util.List;
 
 public class BatteryStatsListAdapter extends BaseAdapter {
     private final Context mContext;
-    private final List<MainActivity.SipperHolder> mSippers;
+    private final List<HiddenApiUtils.SipperHolder> mSippers;
+    private final HiddenApiUtils mHiddenApiUtils;
 
     private final int SECOND = 1000;
     private final int MINUTE = 60 * SECOND;
     private final int HOUR = 60 * MINUTE;
 
-    public BatteryStatsListAdapter(Context ctx, List<MainActivity.SipperHolder> items) {
+    public BatteryStatsListAdapter(Context ctx) {
         mContext = ctx;
-        mSippers = items;
+        mHiddenApiUtils = new HiddenApiUtils(ctx);
+        mSippers = mHiddenApiUtils.getMainUsageList();
     }
 
     @Override
@@ -39,7 +41,7 @@ public class BatteryStatsListAdapter extends BaseAdapter {
     }
 
     @Override
-    public MainActivity.SipperHolder getItem(int position) {
+    public HiddenApiUtils.SipperHolder getItem(int position) {
         return mSippers.get(position);
     }
 
@@ -50,13 +52,13 @@ public class BatteryStatsListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        MainActivity.SipperHolder sipper = getItem(position);
+        HiddenApiUtils.SipperHolder sipper = getItem(position);
         String title = "";
         switch (sipper.appName) {
-            case MainActivity.SipperHolder.USAGE_SCREEN:
+            case HiddenApiUtils.SipperHolder.USAGE_SCREEN:
                 title = "Screen";
                 break;
-            case MainActivity.SipperHolder.USAGE_LAST_CHARGE:
+            case HiddenApiUtils.SipperHolder.USAGE_LAST_CHARGE:
                 title = "Last full charge";
                 break;
             default:
@@ -88,9 +90,10 @@ public class BatteryStatsListAdapter extends BaseAdapter {
         return text.toString();
     }
 
-    public void notifyDataSetChanged(List<MainActivity.SipperHolder> items) {
+    public void notifyDataSetChanged() {
         mSippers.clear();
-        mSippers.addAll(items);
+        mHiddenApiUtils.refreshStats();
+        mSippers.addAll(mHiddenApiUtils.getMainUsageList());
         super.notifyDataSetChanged();
     }
 }

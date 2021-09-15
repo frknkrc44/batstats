@@ -4,7 +4,7 @@
 # Creates a magisk zip #
 ########################
 
-./gradlew assembleDebug
+./gradlew assembleRelease
 
 BUILD_DIR=$(pwd)/zip_build
 UPDATER_DIR=$BUILD_DIR/META-INF/com/google/android
@@ -13,7 +13,7 @@ APP_DIR=$BUILD_DIR/system/priv-app/BatStats
 
 mkdir -p $PERM_DIR
 mkdir -p $APP_DIR
-cp app/build/outputs/apk/debug/app-debug.apk $APP_DIR
+cp app/build/outputs/apk/release/app-release.apk $APP_DIR/BatStats.apk
 mkdir -p $UPDATER_DIR
 curl -L https://raw.githubusercontent.com/topjohnwu/Magisk/master/scripts/module_installer.sh > $UPDATER_DIR/update-binary
 echo "#MAGISK" > $UPDATER_DIR/updater-script
