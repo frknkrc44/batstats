@@ -17,6 +17,8 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
+    private boolean mPaused = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +30,24 @@ public class MainActivity extends Activity {
         final Handler mHandler = new Handler(getMainLooper()) {
             @Override
             public void handleMessage(Message msg) {
-                mListAdapter.notifyDataSetChanged();
+                if(!mPaused)
+                    mListAdapter.notifyDataSetChanged();
                 removeMessages(0);
-                sendEmptyMessageDelayed(0, 250);
+                sendEmptyMessageAtTime(0, msg.getWhen() + 1000);
             }
         };
         mHandler.sendEmptyMessage(0);
     }
 
+    @Override
+    protected void onPause() {
+        mPaused = true;
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        mPaused = false;
+        super.onResume();
+    }
 }
