@@ -9,9 +9,9 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/internal" />
+            <option value="$PROJECT_DIR$/../../../freddy/AndroidStudioProjects/BatStats" />
+            <option value="$PROJECT_DIR$/../../../freddy/AndroidStudioProjects/BatStats/app" />
+            <option value="$PROJECT_DIR$/../../../freddy/AndroidStudioProjects/BatStats/internal" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -96,4 +96,8 @@ public class BatteryStatsListAdapter extends BaseAdapter {
         mSippers.addAll(mHiddenApiUtils.getMainUsageList());
         super.notifyDataSetChanged();
     }
+
+    public HiddenApiUtils getHiddenApiUtils() {
+        return mHiddenApiUtils;
+    }
 }

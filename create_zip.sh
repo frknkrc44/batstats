@@ -29,6 +29,7 @@ EOF
 cat << EOF > $PERM_DIR/privapp-permissions-batstats.xml
 <permissions>
     <privapp-permissions package="org.fk.batstats">
+        <permission name="android.permission.ACCESS_NETWORK_STATE" />
         <permission name="android.permission.BATTERY_STATS" />
         <permission name="android.permission.INTERACT_ACROSS_USERS_FULL" />
     </privapp-permissions>

@@ -14,7 +14,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+
+import com.android.settings.fuelgauge.BatteryHistoryChart;
 
 public class MainActivity extends Activity {
     private boolean mPaused = false;
@@ -22,16 +25,27 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LinearLayout mainLayout = new LinearLayout(this);
+        mainLayout.setOrientation(LinearLayout.VERTICAL);
+        mainLayout.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        BatteryHistoryChart batteryChart = new BatteryHistoryChart(this, null);
+        float density = getResources().getDisplayMetrics().density;
+        batteryChart.setLayoutParams(new LinearLayout.LayoutParams(-1, -1, 1));
+        batteryChart.setTextSize((int) (density * 18));
+        mainLayout.addView(batteryChart);
         ListView mListView = new ListView(this);
-        mListView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        mListView.setLayoutParams(new LinearLayout.LayoutParams(-1, -2, 0));
         BatteryStatsListAdapter mListAdapter = new BatteryStatsListAdapter(this);
         mListView.setAdapter(mListAdapter);
-        setContentView(mListView);
+        mainLayout.addView(mListView);
+        setContentView(mainLayout);
         final Handler mHandler = new Handler(getMainLooper()) {
             @Override
             public void handleMessage(Message msg) {
-                if(!mPaused)
+                if(!mPaused) {
                     mListAdapter.notifyDataSetChanged();
+                    batteryChart.setStats(mListAdapter.getHiddenApiUtils().getStats());
+                }
                 removeMessages(0);
                 sendEmptyMessageAtTime(0, msg.getWhen() + 1000);
             }

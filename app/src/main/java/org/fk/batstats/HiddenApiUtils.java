@@ -129,6 +129,10 @@ public class HiddenApiUtils {
         return null;
     }
 
+    public BatteryStats getStats() {
+        return mBatteryStats.getStats();
+    }
+
     public static class SipperHolder {
         public static final String USAGE_SCREEN = ":sot",
                 USAGE_LAST_CHARGE = ":lc";
