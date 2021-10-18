@@ -4,7 +4,13 @@
 # Creates a magisk zip #
 ########################
 
-./gradlew assembleRelease
+BUILD_TYPE=release
+if [ "$BUILD_TYPE" == "release" ]
+then
+  ./gradlew assembleRelease
+else
+  ./gradlew assembleDebug
+fi
 
 BUILD_DIR=$(pwd)/zip_build
 UPDATER_DIR=$BUILD_DIR/META-INF/com/google/android
@@ -13,17 +19,17 @@ APP_DIR=$BUILD_DIR/system/priv-app/BatStats
 
 mkdir -p $PERM_DIR
 mkdir -p $APP_DIR
-cp app/build/outputs/apk/release/app-release.apk $APP_DIR/BatStats.apk
+cp app/build/outputs/apk/$BUILD_TYPE/app-$BUILD_TYPE.apk $APP_DIR/BatStats.apk
 mkdir -p $UPDATER_DIR
 curl -L https://raw.githubusercontent.com/topjohnwu/Magisk/master/scripts/module_installer.sh > $UPDATER_DIR/update-binary
 echo "#MAGISK" > $UPDATER_DIR/updater-script
 cat << EOF > $BUILD_DIR/module.prop
 id=batstats12
 name=BatStats for Android 12
-version=v1.0
-versionCode=1
+version=v2.0
+versionCode=2
 author=frknkrc44
-description=Shows screen and last charge time
+description=Shows battery stats after full charge
 EOF
 
 cat << EOF > $PERM_DIR/privapp-permissions-batstats.xml

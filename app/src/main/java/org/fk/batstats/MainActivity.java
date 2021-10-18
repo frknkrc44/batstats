@@ -28,14 +28,15 @@ public class MainActivity extends Activity {
         LinearLayout mainLayout = new LinearLayout(this);
         mainLayout.setOrientation(LinearLayout.VERTICAL);
         mainLayout.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        BatteryStatsListAdapter mListAdapter = new BatteryStatsListAdapter(this);
         BatteryHistoryChart batteryChart = new BatteryHistoryChart(this, null);
         float density = getResources().getDisplayMetrics().density;
+        batteryChart.setStats(mListAdapter.getHiddenApiUtils().getStats());
         batteryChart.setLayoutParams(new LinearLayout.LayoutParams(-1, -1, 1));
-        batteryChart.setTextSize((int) (density * 18));
+        batteryChart.setTextSize((int) (density * 16));
         mainLayout.addView(batteryChart);
         ListView mListView = new ListView(this);
         mListView.setLayoutParams(new LinearLayout.LayoutParams(-1, -2, 0));
-        BatteryStatsListAdapter mListAdapter = new BatteryStatsListAdapter(this);
         mListView.setAdapter(mListAdapter);
         mainLayout.addView(mListView);
         setContentView(mainLayout);

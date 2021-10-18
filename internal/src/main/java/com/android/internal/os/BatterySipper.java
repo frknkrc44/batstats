@@ -13,10 +13,16 @@ import android.os.BatteryStats;
 
 // Copied from https://android.googlesource.com/platform/frameworks/base/+/master/core/java/com/android/internal/os/BatterySipper.java
 public class BatterySipper {
-    // public double screenPowerMah;
+    public double screenPowerMah;
     public DrainType drainType;
     public long usageTimeMs;
-    // public BatteryStats.Uid uidObj;
+    public BatteryStats.Uid uidObj;
+    public String[] mPackages;
+    public double totalPowerMah;
+
+    public int getUid() {
+       return 0;
+    }
 
     public enum DrainType {
         AMBIENT_DISPLAY,
@@ -36,10 +42,4 @@ public class BatterySipper {
     }
 
     public BatterySipper(DrainType drainType, BatteryStats.Uid uid, double value) {}
-
-/*
-    public int getUid() {
-        return 0;
-    }
-*/
 }

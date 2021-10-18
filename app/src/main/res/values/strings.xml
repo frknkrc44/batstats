@@ -18,12 +18,69 @@
     <string name="battery_stats_screen_on_label">Screen on</string>
     <!-- [CHAR LIMIT=25] Label for battery stats gps on state graph -->
     <string name="battery_stats_gps_on_label">GPS on</string>
+    <!-- [CHAR LIMIT=25] Label for battery stats camera on state graph -->
+    <string name="battery_stats_camera_on_label">Camera on</string>
+    <!-- [CHAR LIMIT=25] Label for battery stats flashlight on state graph -->
+    <string name="battery_stats_flashlight_on_label">Flashlight on</string>
     <!-- [CHAR LIMIT=25] Label for battery stats wifi running state graph -->
-    <string name="battery_stats_wifi_running_label">Wi-Fi</string>
+    <string name="battery_stats_wifi_running_label">Wi\u2011Fi</string>
     <!-- [CHAR LIMIT=25] Label for battery stats wake lock state graph -->
     <string name="battery_stats_wake_lock_label">Awake</string>
     <!-- [CHAR LIMIT=25] Label for battery stats phone signal strength graph -->
     <string name="battery_stats_phone_signal_label">Mobile network signal</string>
-    <!-- Battery usage during last unplugged period -->
-    <string name="battery_stats_last_duration">While last unplugged for %1$s</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_unknown">Unknown</string>
+    <!-- [CHAR_LIMIT=20] Battery use screen.  Battery status shown in chart label when charging from an unknown source.  -->
+    <string name="battery_info_status_charging">Charging</string>
+    <!-- [CHAR_LIMIT=20] Battery use screen.  Battery status shown in chart label when charging speed is fast.  -->
+    <string name="battery_info_status_charging_fast">Charging rapidly</string>
+    <!-- [CHAR_LIMIT=20] Battery use screen.  Battery status shown in chart label when charging speed is slow.  -->
+    <string name="battery_info_status_charging_slow">Charging slowly</string>
+    <!-- [CHAR_LIMIT=20] Battery use screen.  Battery status shown in chart label when charging wirelessly.  -->
+    <string name="battery_info_status_charging_wireless">Charging wirelessly</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_discharging">Not charging</string>
+    <!-- Battery Info screen. Value for a status item. A state which device is connected with any charger(e.g. USB, Adapter or Wireless) but not charging yet. Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_not_charging">Connected, not charging</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_full">Charged</string>
+    <!-- Label for length of time since the battery graph started [CHAR LIMIT=20] -->
+    <string name="charge_length_format">%1$s ago</string>
+    <!-- Label for length of time until battery is charged [CHAR LIMIT=20] -->
+    <string name="remaining_length_format">%1$s left</string>
+    <!-- [CHAR_LIMIT=40] Label for estimated remaining duration of battery charging -->
+    <string name="power_remaining_charging_duration_only">%1$s left until full</string>
+    <!-- [CHAR_LIMIT=40] Label for battery level chart when charging with duration -->
+    <string name="power_charging_duration">%1$s - %2$s left until full</string>
+    <!-- [CHAR_LIMIT=20] Battery use screen with lower case.  Battery status shown in chart label when charging from an unknown source.  -->
+    <string name="battery_info_status_charging_lower">charging</string>
+    <!-- [CHAR_LIMIT=40] Label for battery level chart when charging -->
+    <string name="power_charging">%1$s - %2$s</string>
+    <!-- time label for event have that happened very recently [CHAR LIMIT=60] -->
+    <string name="time_unit_just_now">Just now</string>
+    <!-- [CHAR_LIMIT=NONE] Label for battery on main page of settings -->
+    <string name="power_remaining_settings_home_page">%1$s - %2$s</string>
+    <!-- [CHAR_LIMIT=40] Label for estimated remaining duration of battery discharging -->
+    <string name="power_remaining_duration_only">About %1$s left</string>
+    <!-- [CHAR_LIMIT=40] Label for battery level chart when discharging with duration -->
+    <string name="power_discharging_duration">About %1$s left (%2$s)</string>
+    <!-- [CHAR_LIMIT=60] Label for estimated remaining duration of battery discharging -->
+    <string name="power_remaining_duration_only_enhanced">About %1$s left based on your usage</string>
+    <!-- [CHAR_LIMIT=60] Label for battery level chart when discharging with duration and using enhanced estimate -->
+    <string name="power_discharging_duration_enhanced">About %1$s left based on your usage (%2$s)</string>
+    <!-- [CHAR_LIMIT=20] Short label for estimated remaining duration of battery charging/discharging -->
+    <string name="power_remaining_duration_only_short">%1$s</string>
+    <!-- [CHAR_LIMIT=60] label for estimated remaining duration of battery when under a certain amount -->
+    <string name="power_remaining_less_than_duration_only">Less than %1$s left</string>
+    <!-- [CHAR_LIMIT=60] label for estimated remaining duration of battery when under a certain amount with the percentage -->
+    <string name="power_remaining_less_than_duration">Less than %1$s left (%2$s)</string>
+
+    <!-- Used to let users know that they have more than some amount of battery life remaining with percentage. ex: 75% - more than 1 day remaining [CHAR LIMIT = 80] -->
+    <string name="power_remaining_more_than_subtext">More than %1$s left (%2$s)</string>
+    <!-- Used to let users know that they have more than some amount of battery life remaining. ex: more than 1 day remaining [CHAR LIMIT = 40] -->
+    <string name="power_remaining_only_more_than_subtext">More than %1$s left</string>
+    <!-- [CHAR_LIMIT=50] Short label for imminent shutdown warning of device -->
+    <string name="power_remaining_duration_only_shutdown_imminent">Device may shut down soon</string>
+    <!-- [CHAR_LIMIT=60] Label for battery level chart when shutdown is imminent-->
+    <string name="power_remaining_duration_shutdown_imminent">Device may shut down soon (%1$s)</string>
 </resources>

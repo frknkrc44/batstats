@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="usage_graph_area_height">122dp</dimen>
+    <dimen name="usage_graph_margin_top_bottom">9dp</dimen>
+    <dimen name="usage_graph_labels_width">56dp</dimen>
+    <dimen name="usage_graph_labels_padding">16dp</dimen>
+    <dimen name="usage_graph_divider_size">1dp</dimen>
+    <dimen name="usage_graph_line_width">3dp</dimen>
+    <dimen name="usage_graph_line_corner_radius">6dp</dimen>
+    <dimen name="usage_graph_dot_size">.75dp</dimen>
+    <dimen name="usage_graph_dot_interval">7dp</dimen>
+</resources>
