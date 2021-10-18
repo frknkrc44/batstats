@@ -30,7 +30,6 @@ public class UsageView extends FrameLayout {
 
     private final UsageGraph mUsageGraph;
     private final TextView[] mLabels;
-    private final TextView[] mBottomLabels;
 
     public UsageView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -41,23 +40,13 @@ public class UsageView extends FrameLayout {
                 findViewById(R.id.label_middle),
                 findViewById(R.id.label_top),
         };
-        mBottomLabels = new TextView[] {
-                findViewById(R.id.label_start),
-                findViewById(R.id.label_end),
-        };
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.UsageView, 0, 0);
         if (a.hasValue(R.styleable.UsageView_sideLabels)) {
             setSideLabels(a.getTextArray(R.styleable.UsageView_sideLabels));
         }
-        if (a.hasValue(R.styleable.UsageView_bottomLabels)) {
-            setBottomLabels(a.getTextArray(R.styleable.UsageView_bottomLabels));
-        }
         if (a.hasValue(R.styleable.UsageView_textColor)) {
             int color = a.getColor(R.styleable.UsageView_textColor, 0);
             for (TextView v : mLabels) {
-                v.setTextColor(color);
-            }
-            for (TextView v : mBottomLabels) {
                 v.setTextColor(color);
             }
         }
@@ -130,15 +119,6 @@ public class UsageView extends FrameLayout {
         }
         for (int i = 0; i < mLabels.length; i++) {
             mLabels[i].setText(labels[i]);
-        }
-    }
-
-    public void setBottomLabels(CharSequence[] labels) {
-        if (labels.length != mBottomLabels.length) {
-            throw new IllegalArgumentException("Invalid number of labels");
-        }
-        for (int i = 0; i < mBottomLabels.length; i++) {
-            mBottomLabels[i].setText(labels[i]);
         }
     }
 

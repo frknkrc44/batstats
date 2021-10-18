@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../freddy/AndroidStudioProjects/BatStats/app/src/main/res/layout/activity_settings.xml" value="0.1" />
         <entry key="../../../freddy/AndroidStudioProjects/BatStats/app/src/main/res/layout/usage_side_label.xml" value="0.1" />
         <entry key="../../../freddy/AndroidStudioProjects/BatStats/app/src/main/res/layout/usage_view.xml" value="0.9879032258064516" />
+        <entry key="../../../freddy/AndroidStudioProjects/BatStats/app/src/main/res/menu/menu_main.xml" value="0.1" />
       </map>
     </option>
   </component>

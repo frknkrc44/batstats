@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.os.BatteryManager;
+import android.util.Log;
 
 import org.fk.batstats.R;
 
@@ -149,5 +150,9 @@ public class Utils {
         }
 
         return statusString;
+    }
+
+    public static void logRuntime(String tag, String message, long startTime) {
+        Log.d(tag, message + ": " + (System.currentTimeMillis() - startTime) + "ms");
     }
 }

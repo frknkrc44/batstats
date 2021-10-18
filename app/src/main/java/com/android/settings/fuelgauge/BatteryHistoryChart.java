@@ -194,6 +194,7 @@ public class BatteryHistoryChart extends View {
     int mDrainStringWidth;
 
     boolean mLargeMode;
+    boolean mShowDetails;
 
     int mLastWidth = -1;
     int mLastHeight = -1;
@@ -512,6 +513,10 @@ public class BatteryHistoryChart extends View {
         mHeaderTextPaint.setTextSize(size);
     }
 
+    public void setShowDetails(boolean show) {
+        mShowDetails = show;
+    }
+
     public void setStats(BatteryStats stats) {
         setStats(stats, null);
     }
@@ -602,14 +607,22 @@ public class BatteryHistoryChart extends View {
             mEndDataWallTime = lastWallTime + mHistDataEnd - lastRealtime;
             mEndWallTime = mEndDataWallTime + (mInfo.remainingTimeUs/1000);
             mNumHist = lastInteresting;
-            mHaveGps = (aggrStates&HistoryItem.STATE_GPS_ON_FLAG) != 0;
-            mHaveFlashlight = (aggrStates2&HistoryItem.STATE2_FLASHLIGHT_FLAG) != 0;
-            mHaveCamera = (aggrStates2&HistoryItem.STATE2_CAMERA_FLAG) != 0;
-            mHaveWifi = (aggrStates2&HistoryItem.STATE2_WIFI_RUNNING_FLAG) != 0
-                    || (aggrStates&(HistoryItem.STATE_WIFI_FULL_LOCK_FLAG
-                    |HistoryItem.STATE_WIFI_MULTICAST_ON_FLAG
-                    |HistoryItem.STATE_WIFI_SCAN_FLAG)) != 0;
-            mHavePhoneSignal = !Utils.isWifiOnly(getContext());
+            if (!mShowDetails) {
+                mHaveGps = false;
+                mHaveFlashlight = false;
+                mHaveCamera = false;
+                mHaveWifi = false;
+                mHavePhoneSignal = false;
+            } else {
+                mHaveGps = (aggrStates&HistoryItem.STATE_GPS_ON_FLAG) != 0;
+                mHaveFlashlight = (aggrStates2&HistoryItem.STATE2_FLASHLIGHT_FLAG) != 0;
+                mHaveCamera = (aggrStates2&HistoryItem.STATE2_CAMERA_FLAG) != 0;
+                mHaveWifi = (aggrStates2&HistoryItem.STATE2_WIFI_RUNNING_FLAG) != 0
+                        || (aggrStates&(HistoryItem.STATE_WIFI_FULL_LOCK_FLAG
+                        |HistoryItem.STATE_WIFI_MULTICAST_ON_FLAG
+                        |HistoryItem.STATE_WIFI_SCAN_FLAG)) != 0;
+                mHavePhoneSignal = !Utils.isWifiOnly(getContext());
+            }
             if (mHistEnd <= mHistStart) mHistEnd = mHistStart+1;
         }, mStats, false /* shortString */);
 

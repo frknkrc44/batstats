@@ -32,7 +32,7 @@ import android.util.SparseIntArray;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.android.settings.fuelgauge.BatteryUtils;
+import com.android.settings.Utils;
 import org.fk.batstats.R;
 
 public class UsageGraph extends View {
@@ -114,7 +114,7 @@ public class UsageGraph extends View {
         mMaxY = maxY;
         calculateLocalPaths();
         postInvalidate();
-        BatteryUtils.logRuntime(LOG_TAG, "setMax", startTime);
+        Utils.logRuntime(LOG_TAG, "setMax", startTime);
     }
 
     void setDividerLoc(int height) {
@@ -144,7 +144,7 @@ public class UsageGraph extends View {
         paths.put(points.keyAt(points.size() - 1) + 1, PATH_DELIM);
         calculateLocalPaths(paths, localPaths);
         postInvalidate();
-        BatteryUtils.logRuntime(LOG_TAG, "addPathAndUpdate", startTime);
+        Utils.logRuntime(LOG_TAG, "addPathAndUpdate", startTime);
     }
 
     void setAccentColor(int color) {
@@ -160,7 +160,7 @@ public class UsageGraph extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         updateGradient();
         calculateLocalPaths();
-        BatteryUtils.logRuntime(LOG_TAG, "onSizeChanged", startTime);
+        Utils.logRuntime(LOG_TAG, "onSizeChanged", startTime);
     }
 
     private void calculateLocalPaths() {
@@ -208,7 +208,7 @@ public class UsageGraph extends View {
                 localPaths.put(lx, ly);
             }
         }
-        BatteryUtils.logRuntime(LOG_TAG, "calculateLocalPaths", startTime);
+        Utils.logRuntime(LOG_TAG, "calculateLocalPaths", startTime);
     }
 
     private boolean hasDiff(int x1, int x2) {
@@ -253,7 +253,7 @@ public class UsageGraph extends View {
         drawLinePath(canvas, mLocalProjectedPaths, mDottedPaint);
         drawFilledPath(canvas, mLocalPaths, mFillPaint);
         drawLinePath(canvas, mLocalPaths, mLinePaint);
-        BatteryUtils.logRuntime(LOG_TAG, "onDraw", startTime);
+        Utils.logRuntime(LOG_TAG, "onDraw", startTime);
     }
 
     private void drawLinePath(Canvas canvas, SparseIntArray localPaths, Paint paint) {

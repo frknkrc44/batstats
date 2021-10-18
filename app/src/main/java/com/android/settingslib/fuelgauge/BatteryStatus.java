@@ -49,16 +49,6 @@ public class BatteryStatus {
     public final int maxChargingWattage;
     public final boolean present;
 
-    public BatteryStatus(int status, int level, int plugged, int health,
-            int maxChargingWattage, boolean present) {
-        this.status = status;
-        this.level = level;
-        this.plugged = plugged;
-        this.health = health;
-        this.maxChargingWattage = maxChargingWattage;
-        this.present = present;
-    }
-
     public BatteryStatus(Intent batteryChangedIntent) {
         status = batteryChangedIntent.getIntExtra(EXTRA_STATUS, BATTERY_STATUS_UNKNOWN);
         plugged = batteryChangedIntent.getIntExtra(EXTRA_PLUGGED, 0);
@@ -83,17 +73,6 @@ public class BatteryStatus {
     }
 
     /**
-     * Determine whether the device is plugged in (USB, power, or wireless).
-     *
-     * @return true if the device is plugged in.
-     */
-    public boolean isPluggedIn() {
-        return plugged == BatteryManager.BATTERY_PLUGGED_AC
-                || plugged == BatteryManager.BATTERY_PLUGGED_USB
-                || plugged == BatteryManager.BATTERY_PLUGGED_WIRELESS;
-    }
-
-    /**
      * Determine whether the device is plugged in (USB, power).
      *
      * @return true if the device is plugged in wired (as opposed to wireless)
@@ -112,24 +91,6 @@ public class BatteryStatus {
      */
     public boolean isCharged() {
         return status == BATTERY_STATUS_FULL || level >= 100;
-    }
-
-    /**
-     * Whether battery is low and needs to be charged.
-     *
-     * @return true if battery is low
-     */
-    public boolean isBatteryLow() {
-        return level < LOW_BATTERY_THRESHOLD;
-    }
-
-    /**
-     * Whether battery is overheated.
-     *
-     * @return true if battery is overheated
-     */
-    public boolean isOverheated() {
-        return health == BATTERY_HEALTH_OVERHEAT;
     }
 
     /**

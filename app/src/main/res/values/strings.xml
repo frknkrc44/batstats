@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Battery Status</string>
     <!-- Used to show an amount of time in the form "d days, h hours, m minutes, s seconds" in BatteryHistory -->
     <string name="battery_history_days">%1$dd %2$dh %3$dm %4$ds</string>
     <!-- Used to show an amount of time in the form "h hours, m minutes, s seconds" in BatteryHistory -->
@@ -83,4 +84,6 @@
     <string name="power_remaining_duration_only_shutdown_imminent">Device may shut down soon</string>
     <!-- [CHAR_LIMIT=60] Label for battery level chart when shutdown is imminent-->
     <string name="power_remaining_duration_shutdown_imminent">Device may shut down soon (%1$s)</string>
+    <string name="activity_settings">Settings</string>
+    <string name="settings_show_details">Show details (restart app after change it)</string>
 </resources>

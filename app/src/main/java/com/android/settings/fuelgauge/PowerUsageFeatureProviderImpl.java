@@ -34,8 +34,17 @@ public class PowerUsageFeatureProviderImpl implements PowerUsageFeatureProvider 
 
     protected PackageManager mPackageManager;
     protected Context mContext;
+    private static PowerUsageFeatureProviderImpl mInstance;
 
-    public PowerUsageFeatureProviderImpl(Context context) {
+    public static PowerUsageFeatureProviderImpl getInstance(Context context) {
+        if (mInstance == null) {
+            mInstance = new PowerUsageFeatureProviderImpl(context);
+        }
+
+        return mInstance;
+    }
+
+    private PowerUsageFeatureProviderImpl(Context context) {
         mPackageManager = context.getPackageManager();
         mContext = context.getApplicationContext();
     }

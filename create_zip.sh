@@ -4,6 +4,8 @@
 # Creates a magisk zip #
 ########################
 
+./gradlew clean
+
 BUILD_TYPE=release
 if [ "$BUILD_TYPE" == "release" ]
 then
@@ -26,8 +28,8 @@ echo "#MAGISK" > $UPDATER_DIR/updater-script
 cat << EOF > $BUILD_DIR/module.prop
 id=batstats12
 name=BatStats for Android 12
-version=v2.0
-versionCode=2
+version=v2.1
+versionCode=3
 author=frknkrc44
 description=Shows battery stats after full charge
 EOF
